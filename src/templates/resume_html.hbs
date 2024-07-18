@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} - Resume</title>
+    <style>
+        body {
+            font-family: {{#if style}}{{style.font_family}}{{else}}Arial, sans-serif{{/if}};
+            line-height: 1.4;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 0.9em;
+        }
+        .resume-body {
+            display: grid;
+            grid-template-columns: 4fr 6fr;
+            margin: 20px 20px 0 20px;
+            gap: 16px;
+        }
+        .resume-header {
+            grid-column: 1 / -1;
+            background-color: {{#if style}}{{style.primary_color}}{{else}}#1b5e5e{{/if}};
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .resume-header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .resume-header p {
+            margin: 2px 0;
+            font-size: 0.9em;
+        }
+        .contact-info {
+            text-align: right;
+        }
+        .section-title {
+            color: {{#if style}}{{style.secondary_color}}{{else}}#1b5e5e{{/if}};
+            border-bottom: 1px solid {{#if style}}{{style.secondary_color}}{{else}}#1b5e5e{{/if}};
+            padding-bottom: 3px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .resume-section {
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .job-title {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .job-details {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .experience-item, .education-item, .certification-item {
+            margin-bottom: 10px;
+        }
+        .made-with {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .resume {
+                grid-template-columns: 1fr;
+            }
+        }
+        #exportButton {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: {{#if style}}{{style.primary_color}}{{else}}#1b5e5e{{/if}};
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            display: none;
+            font-size: 0.8em;
+        }
+        @media print {
+            #exportButton {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <header class="resume-header">
+            <div>
+                <h1>{{name}}</h1>
+                <p>{{title}}</p>
+            </div>
+            <div class="contact-info">
+                <p>{{phone}}</p>
+                <p>{{email}}</p>
+                <p>{{location}}</p>
+                <p><a href="{{linkedin}}" style="color: white;">LinkedIn</a></p>
+            </div>
+        </header>
+        <div class="resume-body">
+            <div class="left-column">
+                <section id="summary" class="resume-section">
+                    <h2 class="section-title">SUMMARY</h2>
+                    <p>{{summary}}</p>
+                </section>
+                
+                <section id="skills" class="resume-section">
+                    <h2 class="section-title">SKILLS</h2>
+                    <ul>
+                        {{#each skills}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </section>
+
+                {{#if education}}
+                <section id="education" class="resume-section">
+                    <h2 class="section-title">EDUCATION</h2>
+                    {{#each education}}
+                    <div class="education-item">
+                        <p class="job-title">{{degree}}</p>
+                        <p>{{institution}}, {{year}}</p>
+                    </div>
+                    {{/each}}
+                </section>
+                {{/if}}
+
+                {{#if certifications}}
+                <section id="certifications" class="resume-section">
+                    <h2 class="section-title">CERTIFICATIONS</h2>
+                    {{#each certifications}}
+                    <div class="certification-item">
+                        <p class="job-title">{{name}}</p>
+                        <p>{{issuer}}, {{year}}</p>
+                    </div>
+                    {{/each}}
+                </section>
+                {{/if}}
+            </div>
+            
+            <div class="right-column">
+                <section id="experience" class="resume-section">
+                    <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+                    {{#each experience}}
+                    <div class="experience-item">
+                        <h3>{{company}}</h3>
+                        <p class="job-title">{{title}}</p>
+                        <p class="job-details">{{location}} | {{start_date}} - {{end_date}}</p>
+                        <ul>
+                            {{#each responsibilities}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
+                </section>
+            </div>
+        </div>
+        
+        {{#if made_with}}
+        <div class="made-with">
+            Built with Rust 🧡 by {{name}}. <a href="{{made_with}}">View code.</a>
+        </div>
+        {{/if}}
+    </div>
+    
+    <button id="exportButton">Export as PDF</button>
+
+    <script>
+        function isPdfExportSupported() {
+            return navigator.userAgent.indexOf('Chrome') !== -1 || 
+                   navigator.userAgent.indexOf('Firefox') !== -1 || 
+                   navigator.userAgent.indexOf('Safari') !== -1;
+        }
+
+        function exportToPdf() {
+            window.print();
+        }
+
+        if (isPdfExportSupported()) {
+            document.getElementById('exportButton').style.display = 'block';
+        }
+
+        document.getElementById('exportButton').addEventListener('click', exportToPdf);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# {{name}}
+
+{{title}}
+
+{{email}} | {{phone}} | {{location}} | [LinkedIn]({{linkedin}})
+
+## SUMMARY
+
+{{summary}}
+
+## SKILLS
+
+{{#each skills}}
+- {{this}}
+{{/each}}
+
+## PROFESSIONAL EXPERIENCE
+
+{{#each experience}}
+### {{company}}
+
+**{{title}}**  
+*{{location}} | {{start_date}} - {{end_date}}*
+
+{{#each responsibilities}}
+- {{this}}
+{{/each}}
+
+{{/each}}
+
+## EDUCATION
+
+{{#each education}}
+### {{institution}}
+
+**{{degree}}**, {{year}}
+
+{{/each}}
+
+## CERTIFICATIONS
+
+{{#each certifications}}
+- **{{name}}**, {{issuer}}, {{year}}
+{{/each}}
+
+{{#if made_with}}
+---
+*Built with Rust 🧡 by {{name}}. [View code]({{made_with}}).*
+{{/if}}

@@ -1,0 +1,70 @@
+{
+    "name": "John Doe",
+    "title": "Software Engineer",
+    "location": "San Francisco, CA",
+    "linkedin": "https://www.linkedin.com/in/johndoe",
+    "email": "john.doe@email.com",
+    "phone": "(123) 456-7890",
+    "summary": "Experienced software engineer with a passion for developing innovative programs that expedite the efficiency and effectiveness of organizational success. Well-versed in technology and writing code to create systems that are reliable and user-friendly. Skilled leader who has the proven ability to motivate, educate, and manage a team of professionals to build software programs and effectively track changes. Confident communicator, strategic thinker, and innovative creator to develop software that is customized to meet a company's organizational needs, highlight their core competencies, and further their success.",
+    "skills": [
+      "Java", "Python", "JavaScript", "React", "Node.js", "SQL", "Git", "Agile/Scrum", "Cloud Computing (AWS)", "Machine Learning"
+    ],
+    "experience": [
+      {
+        "title": "Senior Software Engineer",
+        "company": "Tech Innovations Inc.",
+        "location": "San Francisco, CA",
+        "start_date": "January 2019",
+        "end_date": "Present",
+        "responsibilities": [
+          "Lead a team of 5 developers in the design and implementation of a new cloud-based software solution, resulting in a 30% increase in client satisfaction",
+          "Spearheaded the migration of legacy systems to modern, scalable architectures, improving system performance by 50%",
+          "Implemented automated testing procedures, reducing bug reports by 40% and improving overall software quality"
+        ]
+      },
+      {
+        "title": "Software Developer",
+        "company": "DataCraft Solutions",
+        "location": "San Jose, CA",
+        "start_date": "June 2015",
+        "end_date": "December 2018",
+        "responsibilities": [
+          "Developed and maintained web applications using React and Node.js, serving over 1 million users",
+          "Collaborated with the product team to implement new features and optimize existing functionality",
+          "Mentored junior developers, leading to improved team productivity and code quality"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Science in Computer Science",
+        "institution": "Stanford University",
+        "graduation_year": "2015"
+      },
+      {
+        "degree": "Bachelor of Science in Computer Engineering",
+        "institution": "University of California, Berkeley",
+        "graduation_year": "2013"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "year": "2020"
+      },
+      {
+        "name": "Certified Scrum Master",
+        "issuer": "Scrum Alliance",
+        "year": "2018"
+      }
+    ],
+    "made_with": "https://github.com/yourusername/resume-builder",
+    "style": {
+      "primary_color": "#0d47a1",
+      "secondary_color": "#1976d2",
+      "font_family": "Arial, sans-serif",
+      "text_color": "#333333",
+      "header_text_color": "#ffffff"
+    }
+  }
