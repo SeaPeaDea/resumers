@@ -11,39 +11,43 @@
 ## SKILLS
 
 {{#each skills}}
-- {{this}}
+    - {{this}}
 {{/each}}
 
 ## PROFESSIONAL EXPERIENCE
 
 {{#each experience}}
-### {{company}}
+    ### {{company}}
 
-**{{title}}**  
-*{{location}} | {{start_date}} - {{end_date}}*
+    **{{title}}**
+    *{{location}} | {{start_date}} - {{#if end_date}}{{end_date}}{{else}}Present{{/if}}*
 
-{{#each responsibilities}}
-- {{this}}
-{{/each}}
+    {{#each responsibilities}}
+        - {{this}}
+    {{/each}}
 
 {{/each}}
 
 ## EDUCATION
 
-{{#each education}}
-### {{institution}}
+{{#if education}}
+    {{#each education}}
+        ### {{institution}}
 
-**{{degree}}**, {{year}}
+        **{{degree}}**, {{graduation_year}}
 
-{{/each}}
+    {{/each}}
+{{/if}}
 
 ## CERTIFICATIONS
 
-{{#each certifications}}
-- **{{name}}**, {{issuer}}, {{year}}
-{{/each}}
+{{#if certifications}}
+    {{#each certifications}}
+        - **{{name}}**, {{issuer}}, {{year}}
+    {{/each}}
+{{/if}}
 
 {{#if made_with}}
----
-*Built with Rust 🧡 by {{name}}. [View code]({{made_with}}).*
+    ---
+    *Built with Rust 🧡 by {{name}}. [View code]({{made_with}}).*
 {{/if}}

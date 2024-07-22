@@ -78,24 +78,6 @@
                 grid-template-columns: 1fr;
             }
         }
-        #exportButton {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: {{#if style}}{{style.primary_color}}{{else}}#1b5e5e{{/if}};
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            display: none;
-            font-size: 0.8em;
-        }
-        @media print {
-            #exportButton {
-                display: none !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -118,7 +100,7 @@
                     <h2 class="section-title">SUMMARY</h2>
                     <p>{{summary}}</p>
                 </section>
-                
+
                 <section id="skills" class="resume-section">
                     <h2 class="section-title">SKILLS</h2>
                     <ul>
@@ -152,7 +134,7 @@
                 </section>
                 {{/if}}
             </div>
-            
+
             <div class="right-column">
                 <section id="experience" class="resume-section">
                     <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
@@ -160,7 +142,7 @@
                     <div class="experience-item">
                         <h3>{{company}}</h3>
                         <p class="job-title">{{title}}</p>
-                        <p class="job-details">{{location}} | {{start_date}} - {{end_date}}</p>
+                        <p class="job-details">{{location}} | {{start_date}} - {{#if end_date}}{{end_date}}{{else}}Present{{/if}}</p>
                         <ul>
                             {{#each responsibilities}}
                             <li>{{this}}</li>
@@ -171,32 +153,12 @@
                 </section>
             </div>
         </div>
-        
+
         {{#if made_with}}
         <div class="made-with">
             Built with Rust 🧡 by {{name}}. <a href="{{made_with}}">View code.</a>
         </div>
         {{/if}}
     </div>
-    
-    <button id="exportButton">Export as PDF</button>
-
-    <script>
-        function isPdfExportSupported() {
-            return navigator.userAgent.indexOf('Chrome') !== -1 || 
-                   navigator.userAgent.indexOf('Firefox') !== -1 || 
-                   navigator.userAgent.indexOf('Safari') !== -1;
-        }
-
-        function exportToPdf() {
-            window.print();
-        }
-
-        if (isPdfExportSupported()) {
-            document.getElementById('exportButton').style.display = 'block';
-        }
-
-        document.getElementById('exportButton').addEventListener('click', exportToPdf);
-    </script>
 </body>
 </html>

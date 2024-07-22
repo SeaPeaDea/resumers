@@ -1,27 +1,20 @@
 use clap::Parser;
-use color_eyre::eyre::{Result, eyre};
+use color_eyre::eyre::{Result};
 use std::path::PathBuf;
 use std::fs;
 use crate::resume::{OutputFormat, RenderArgs};
 
-
-#[derive(Debug, Clone)]
-pub enum OutputDestination {
-    File(PathBuf),
-    Memory,
-}
-
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
-struct CliArgs {
+pub struct CliArgs {
     #[arg(short, long)]
     input: PathBuf,
 
     #[arg(short, long)]
-    output: Option<PathBuf>,
+    pub(crate) output: PathBuf,
 
     #[arg(short, long, value_enum)]
-    format: OutputFormat,
+    pub(crate) format: OutputFormat,
 }
 
 impl TryFrom<CliArgs> for RenderArgs {
@@ -32,20 +25,9 @@ impl TryFrom<CliArgs> for RenderArgs {
 
         let resume = serde_json::from_str(&input_content)?;
 
-        let output = match cli_args.output {
-            Some(path) => OutputDestination::File(path),
-            None => OutputDestination::Memory,
-        };
-
         Ok(RenderArgs {
             resume,
-            output,
             format: cli_args.format,
         })
     }
-}
-
-pub fn parse_args() -> Result<RenderArgs> {
-    let cli_args = CliArgs::parse();
-    RenderArgs::try_from(cli_args).map_err(|e| eyre!("Failed to parse arguments: {}", e))
 }

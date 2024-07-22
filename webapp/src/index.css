@@ -1,0 +1,36 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --color-bg-primary: theme('colors.primary.50');
+  --color-bg-secondary: theme('colors.white');
+  --color-text-primary: theme('colors.primary.900');
+  --color-text-secondary: theme('colors.primary.600');
+  --color-accent: theme('colors.accent.600');
+}
+
+.dark {
+  --color-bg-primary: theme('colors.primary.900');
+  --color-bg-secondary: theme('colors.primary.800');
+  --color-text-primary: theme('colors.primary.100');
+  --color-text-secondary: theme('colors.primary.300');
+  --color-accent: theme('colors.accent.400');
+}
+
+body {
+  @apply bg-primary-50 dark:bg-primary-900 text-primary-900 dark:text-primary-100;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-md font-semibold transition-colors;
+}
+
+.input {
+  @apply w-full px-3 py-2 bg-white dark:bg-primary-800 border border-primary-300 dark:border-primary-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500;
+}
+
+.card {
+  @apply bg-white dark:bg-primary-800 rounded-lg shadow-lg p-6;
+}

@@ -1,6 +1,8 @@
 use serde_with::{DeserializeFromStr, SerializeDisplay};
 use std::str::FromStr;
+use typeshare::typeshare;
 
+#[typeshare]
 #[derive(Debug, Clone, SerializeDisplay, DeserializeFromStr)]
 pub struct Url(String);
 
