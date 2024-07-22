@@ -2,13 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import ResumeForm from './ui/ResumeForm'
 import {generateResume, loadDefaultResume, OutputFormat, Resume} from './utils/resume'
 
-import {
-    ArrowDownTrayIcon,
-    ArrowUpTrayIcon,
-    DocumentPlusIcon,
-    MoonIcon,
-    SunIcon
-} from '@heroicons/react/24/outline'
+import {ArrowDownTrayIcon, ArrowUpTrayIcon, DocumentPlusIcon, MoonIcon, SunIcon} from '@heroicons/react/24/outline'
 
 function App() {
     const [resume, setResume] = useState<Resume>(() => {
@@ -136,7 +130,7 @@ function App() {
             const newWindow = window.open('', '_blank', 'width=800,height=600');
             if (newWindow) {
                 const mimeType = outputFormat === OutputFormat.Html ? 'text/html' : 'text/markdown';
-                const blob = new Blob([content], { type: mimeType });
+                const blob = new Blob([content], {type: mimeType});
                 const blobUrl = URL.createObjectURL(blob);
 
                 newWindow.document.write(`
@@ -282,24 +276,59 @@ function App() {
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex flex-col lg:flex-row justify-between items-center mb-4 space-y-4 lg:space-y-0">
                         <h1 className="text-3xl font-bold text-primary-900 dark:text-primary-100">Resume Generator</h1>
-                        <div className="flex flex-wrap items-center justify-center gap-4">
-                            <button onClick={toggleTheme}
-                                    className="p-2 rounded-full bg-primary-200 dark:bg-primary-700 text-primary-800 dark:text-primary-200 hover:bg-primary-300 dark:hover:bg-primary-600 transition-colors duration-200">
-                                {theme === 'light' ? <MoonIcon className="h-5 w-5"/> : <SunIcon className="h-5 w-5"/>}
-                            </button>
-                            <label
-                                className="p-2 rounded-full bg-accent-600 hover:bg-accent-700 text-white cursor-pointer transition-colors duration-200">
-                                <ArrowUpTrayIcon className="h-5 w-5"/>
-                                <input type="file" className="hidden" accept=".json" onChange={handleFileImport}/>
-                            </label>
-                            <button onClick={handleSaveToLocalStorage}
-                                    className="p-2 rounded-full bg-accent-600 hover:bg-accent-700 text-white transition-colors duration-200">
-                                <DocumentPlusIcon className="h-5 w-5"/>
-                            </button>
-                            <button onClick={handleDownloadJSON}
-                                    className="p-2 rounded-full bg-accent-600 hover:bg-accent-700 text-white transition-colors duration-200">
-                                <ArrowDownTrayIcon className="h-5 w-5"/>
-                            </button>
+                        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+                            <div className="group relative">
+                                <button onClick={toggleTheme}
+                                        className="p-2 rounded-full bg-primary-200 dark:bg-primary-700 text-primary-800 dark:text-primary-200 hover:bg-primary-300 dark:hover:bg-primary-600 transition-colors duration-200">
+                                    {theme === 'light' ? <MoonIcon className="h-5 w-5"/> :
+                                        <SunIcon className="h-5 w-5"/>}
+                                </button>
+                                <span
+                                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:left-1/2 before:top-full before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
+                                Toggle theme
+                            </span>
+                            </div>
+
+                            <div className="group relative">
+                                <label
+                                    className="p-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white cursor-pointer transition-colors duration-200 inline-flex items-center justify-center">
+                                    <ArrowUpTrayIcon className="h-5 w-5"/>
+                                    <input
+                                        type="file"
+                                        className="hidden"
+                                        accept=".json"
+                                        onChange={handleFileImport}
+                                        aria-label="Import resume from JSON"
+                                    />
+                                </label>
+                                <span
+                                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:left-1/2 before:top-full before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
+                                    Import resume from JSON
+                                </span>
+                            </div>
+
+                            <div className="group relative">
+                                <button onClick={handleSaveToLocalStorage}
+                                        className="p-2 rounded-full bg-accent-600 hover:bg-accent-700 text-white transition-colors duration-200">
+                                    <DocumentPlusIcon className="h-5 w-5"/>
+                                </button>
+                                <span
+                                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:left-1/2 before:top-full before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
+                                Save to local storage
+                            </span>
+                            </div>
+
+                            <div className="group relative">
+                                <button onClick={handleDownloadJSON}
+                                        className="p-2 rounded-full bg-accent-600 hover:bg-accent-700 text-white transition-colors duration-200">
+                                    <ArrowDownTrayIcon className="h-5 w-5"/>
+                                </button>
+                                <span
+                                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:left-1/2 before:top-full before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
+                                Download JSON
+                            </span>
+                            </div>
+
                             <select
                                 value={selectedResume}
                                 onChange={(e) => setSelectedResume(e.target.value)}
@@ -310,6 +339,7 @@ function App() {
                                     <option key={name} value={name}>{name}</option>
                                 ))}
                             </select>
+
                             <button
                                 onClick={handleLoadFromLocalStorage}
                                 disabled={!selectedResume}
@@ -317,6 +347,7 @@ function App() {
                             >
                                 Load
                             </button>
+
                             <select
                                 value={outputFormat}
                                 onChange={(e) => setOutputFormat(e.target.value as OutputFormat)}
@@ -325,20 +356,34 @@ function App() {
                                 <option value={OutputFormat.Html}>HTML</option>
                                 <option value={OutputFormat.Markdown}>Markdown</option>
                             </select>
-                            <button
-                                onClick={handleView}
-                                className={`px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 text-white font-bold transition-colors duration-200 ${generatingResume ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={generatingResume}
-                            >
-                                {generatingResume ? 'Processing...' : 'View'}
-                            </button>
-                            <button
-                                onClick={handleDownload}
-                                className={`px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 text-white font-bold transition-colors duration-200 ${generatingResume ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={generatingResume}
-                            >
-                                {generatingResume ? 'Processing...' : 'Download'}
-                            </button>
+
+                            <div className="group relative">
+                                <button
+                                    onClick={handleView}
+                                    className={`px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 text-white font-bold transition-colors duration-200 ${generatingResume ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    disabled={generatingResume}
+                                >
+                                    {generatingResume ? 'Processing...' : 'View'}
+                                </button>
+                                <span
+                                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:left-1/2 before:top-full before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
+                                View generated resume
+                            </span>
+                            </div>
+
+                            <div className="group relative">
+                                <button
+                                    onClick={handleDownload}
+                                    className={`px-4 py-2 rounded-md bg-accent-600 hover:bg-accent-700 text-white font-bold transition-colors duration-200 ${generatingResume ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    disabled={generatingResume}
+                                >
+                                    {generatingResume ? 'Processing...' : 'Download'}
+                                </button>
+                                <span
+                                    className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:left-1/2 before:top-full before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
+                                Download generated resume
+                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
