@@ -2,24 +2,51 @@
 
 Where CVs Meet Crab Code 🦀
 
-Dive into the rusty waters of resume writing! This repo houses a Rust-powered resume generator that's more fun than a barrel of borrowck errors. It's not just code; it's a career compiler that turns your professional life into a beautifully rendered document.
+Dive into the rusty waters of resume writing! This repo houses a Rust-powered resume generator that's more fun than writing async rust with traits. It's not just code; it's a career compiler that turns your professional life into a beautifully rendered document.
 
 ## 🌟 Features
 
-- Oxidizes your work experience into a sleek, printable format
+- Oxidizes your work experience into sleek, printable HTML and Markdown formats
 - Memory-safe job descriptions (no undefined behavior in your career history!)
 - Concurrency-friendly: parallelize your job search with ease
 - Zero-cost abstractions of your skills (but infinite value to employers)
-- Generates both HTML and Markdown outputs
+- Web-based resume editor with real-time preview
+- Customizable styling options
+- Local storage support for saving and loading multiple resumes
+- Export options: View in browser, download as HTML/Markdown, or save as PDF
+- WASM-powered for lightning-fast resume generation in the browser
+- CLI tool for generating resumes from the command line
+
+## 🚀 Live Demo
+
+Check out the live web application: [Resume Rustification Web App](https://seapeadea.github.io/resumers/)
 
 ## 🛠 Prerequisites
 
+To work with this project, you'll need:
+
 - Rust (latest stable version)
 - Cargo (comes with Rust)
+- Node.js (v18 or later recommended)
+- npm (v8 or later recommended)
+
+Make sure you have these tools installed and properly configured before proceeding.
 
 ## 🧰 Usage
 
-To generate a resume, use the following command:
+### Web Application
+
+1. Clone the repository
+2. Navigate to the `webapp` directory
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run dev`
+5. Open your browser and go to `http://localhost:5173`
+
+The build process, including WASM compilation, is handled automatically by the Vite build setup.
+
+### CLI Tool
+
+To generate a resume using the CLI, use the following command:
 
 ```
 cargo run -- --input <path_to_input_json> --output <path_to_output_file> --format <html|markdown>
@@ -27,62 +54,22 @@ cargo run -- --input <path_to_input_json> --output <path_to_output_file> --forma
 
 For example:
 ```
-cargo run -- --input ./test_data/html_input.json --output my_resume.html --format html
+cargo run -- --input ./src/test_data/test_input.json --output my_resume.html --format html
 ```
 
-## 📄 Input Format
+## 📄 Example Outputs
 
-The input should be a JSON file with the following structure:
+We've included example outputs inside the `examples/` folder to demonstrate what you can expect from our resume generator:
 
-```json
-{
-  "name": "Your Name",
-  "title": "Your Title",
-  "location": "Your Location",
-  "linkedin": "Your LinkedIn URL",
-  "email": "Your Email",
-  "phone": "Your Phone Number",
-  "summary": "A brief summary of your professional profile",
-  "skills": ["Skill 1", "Skill 2", "..."],
-  "experience": [
-    {
-      "title": "Job Title",
-      "company": "Company Name",
-      "location": "Job Location",
-      "start_date": "Start Date",
-      "end_date": "End Date",
-      "responsibilities": ["Responsibility 1", "Responsibility 2", "..."]
-    }
-  ],
-  "education": [
-    {
-      "degree": "Degree Name",
-      "institution": "Institution Name",
-      "graduation_year": "Graduation Year"
-    }
-  ],
-  "certifications": [
-    {
-      "name": "Certification Name",
-      "issuer": "Issuer Name",
-      "year": "Year"
-    }
-  ],
-  "made_with": "URL to this project",
-  "style": {
-    "primary_color": "#HEX_COLOR",
-    "secondary_color": "#HEX_COLOR",
-    "font_family": "Font Family",
-    "text_color": "#HEX_COLOR",
-    "header_text_color": "#HEX_COLOR"
-  }
-}
-```
+1. `John Doe - Resume.pdf`: A PDF version of the generated resume.
+2. `John_Doe_resume.html`: An HTML version of the generated resume.
+3. `John_Doe_resume.md`: A Markdown version of the generated resume.
+
+These examples showcase the different formats our tool can produce. Feel free to check them out to get an idea of the final result!
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request or fork this. I just hacked this together because I needed a single-page resume and wanted a reason to get rusty.
-
+Contributions are welcome! Please feel free to submit a Pull Request or fork this project.
 
 ## 🎉 Acknowledgments
 

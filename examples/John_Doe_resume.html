@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 0.9em;
+        }
+        .resume-body {
+            display: grid;
+            grid-template-columns: 4fr 6fr;
+            margin: 20px 20px 0 20px;
+            gap: 16px;
+        }
+        .resume-header {
+            grid-column: 1 / -1;
+            background-color: #0d47a1;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .resume-header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .resume-header p {
+            margin: 2px 0;
+            font-size: 0.9em;
+        }
+        .contact-info {
+            text-align: right;
+        }
+        .section-title {
+            color: #1976d2;
+            border-bottom: 1px solid #1976d2;
+            padding-bottom: 3px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .resume-section {
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .job-title {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .job-details {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .experience-item, .education-item, .certification-item {
+            margin-bottom: 10px;
+        }
+        .made-with {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .resume {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <header class="resume-header">
+            <div>
+                <h1>John Doe</h1>
+                <p>Software Engineer</p>
+            </div>
+            <div class="contact-info">
+                <p>1234567890</p>
+                <p>john.doe@email.com</p>
+                <p>San Francisco, CA</p>
+                <p><a href="https://www.linkedin.com/in/johndoe" style="color: white;">LinkedIn</a></p>
+            </div>
+        </header>
+        <div class="resume-body">
+            <div class="left-column">
+                <section id="summary" class="resume-section">
+                    <h2 class="section-title">SUMMARY</h2>
+                    <p>Experienced software engineer with a passion for developing innovative programs that expedite the efficiency and effectiveness of organizational success. Well-versed in technology and writing code to create systems that are reliable and user-friendly.</p>
+                </section>
+
+                <section id="skills" class="resume-section">
+                    <h2 class="section-title">SKILLS</h2>
+                    <ul>
+                        <li>Rust</li>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Node.js</li>
+                        <li>SQL</li>
+                        <li>Git</li>
+                        <li>Agile/Scrum</li>
+                        <li>Cloud Computing (AWS)</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                </section>
+
+                <section id="education" class="resume-section">
+                    <h2 class="section-title">EDUCATION</h2>
+                    <div class="education-item">
+                        <p class="job-title">Master of Science in Computer Science</p>
+                        <p>Stanford University, 2015</p>
+                    </div>
+                    <div class="education-item">
+                        <p class="job-title">Bachelor of Science in Computer Engineering</p>
+                        <p>University of California, Berkeley, 2013</p>
+                    </div>
+                </section>
+
+                <section id="certifications" class="resume-section">
+                    <h2 class="section-title">CERTIFICATIONS</h2>
+                    <div class="certification-item">
+                        <p class="job-title">AWS Certified Solutions Architect</p>
+                        <p>Amazon Web Services, 2020</p>
+                    </div>
+                    <div class="certification-item">
+                        <p class="job-title">Certified Scrum Master</p>
+                        <p>Scrum Alliance, 2018</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section id="experience" class="resume-section">
+                    <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+                    <div class="experience-item">
+                        <h3>Tech Innovations Inc.</h3>
+                        <p class="job-title">Senior Software Engineer</p>
+                        <p class="job-details">San Francisco, CA | 2019-01-15 - Present</p>
+                        <ul>
+                            <li>Lead a team of 5 developers in the design and implementation of a new cloud-based software solution</li>
+                            <li>Spearheaded the migration of legacy systems to modern, scalable architectures</li>
+                            <li>Implemented automated testing procedures, reducing bug reports by 40%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3>DataCraft Solutions</h3>
+                        <p class="job-title">Software Developer</p>
+                        <p class="job-details">San Jose, CA | 2015-06-01 - 2018-12-31</p>
+                        <ul>
+                            <li>Developed and maintained web applications using React and Node.js</li>
+                            <li>Collaborated with the product team to implement new features</li>
+                            <li>Mentored junior developers, leading to improved team productivity</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="made-with">
+            Built with Rust 🧡 by John Doe. <a href="https://github.com/yourusername/resume-builder">View code.</a>
+        </div>
+    </div>
+</body>
+</html>
